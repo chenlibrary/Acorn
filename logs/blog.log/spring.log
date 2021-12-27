@@ -1,0 +1,13 @@
+2021-11-29 21:57:55.268  INFO 3924 --- [main] com.www.acorn.AcornApplication           : Starting AcornApplication using Java 1.8.0_144 on DESKTOP-KCA3EVM with PID 3924 (D:\cjhIdea\acorn\target\classes started by ASUS in D:\cjhIdea\acorn)
+2021-11-29 21:57:55.278  INFO 3924 --- [main] com.www.acorn.AcornApplication           : No active profile set, falling back to default profiles: default
+2021-11-29 21:57:57.238  INFO 3924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-11-29 21:57:57.254  INFO 3924 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-11-29 21:57:57.255  INFO 3924 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.53]
+2021-11-29 21:57:57.394  INFO 3924 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-11-29 21:57:57.394  INFO 3924 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1993 ms
+2021-11-29 21:57:58.111  INFO 3924 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2021-11-29 21:57:58.413  INFO 3924 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-11-29 21:57:58.433  INFO 3924 --- [main] com.www.acorn.AcornApplication           : Started AcornApplication in 4.012 seconds (JVM running for 9.695)
+2021-11-29 22:04:53.059  INFO 3924 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-11-29 22:04:53.060  INFO 3924 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-11-29 22:04:53.065  INFO 3924 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
