@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Mapper
 @Repository
-public interface UserMapper {
+public interface MyUserMapper {
 
     @Select("select * from user where user=#{user}")
     List<Map> findUserId(@Param("user")String user);
@@ -26,7 +26,7 @@ public interface UserMapper {
     int  insertUser(@Param("user")String user,@Param("email")String email, @Param("pass")String pass,@Param("nickname")String nickname);
 
 
-    @Select("update  user set pass=#{newpass} where user=#{user} and pass=#{oldpass}")
-    int updateUser(@Param("user")String user, @Param("oldpass")String oldpass,@Param("newpass")String newpass);
+//    @Select("update  user set pass=#{newpass} where user=#{user} and pass=#{oldpass}")
+//    int updateUser(@Param("user")String user, @Param("oldpass")String oldpass,@Param("newpass")String newpass);
 
 }
