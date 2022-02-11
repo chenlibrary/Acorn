@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.acorn.mapper.MyCircleMapper">
+  <resultMap id="circleAndAttentionNumDto" type="com.www.acorn.dto.CircleAndAttentionNumDto"
+             extends="com.www.acorn.mbgmapper.CircleMapper.BaseResultMap">
+    <result column="attention_num" property="attentionNum"/>
+  </resultMap>
+
+  <select id="selectRecommendCircle" resultMap="circleAndAttentionNumDto">
+    select
+    circle.*,
+    (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
+    from  circle
+    where admin_flag=1
+    order by attention_num
+  </select>
+
+  <select id="selectOfficialCircle" resultMap="circleAndAttentionNumDto">
+    select
+    circle.*,
+    (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
+    from  circle
+    where admin_flag=1
+  </select>
+
+  <select id="selectSearchCircle" resultMap="circleAndAttentionNumDto">
+    select
+    circle.*,
+    (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
+    from  circle
+    where admin_flag=1 and  name  LIKE  concat('%',#{searchText},'%')
+  </select>
+
+  <select id="selectAllCircle" resultMap="circleAndAttentionNumDto">
+    select
+    circle.*,
+    (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
+    from  circle
+    where admin_flag=1
+    order by  circle.date desc
+  </select>
+
+<!--  <update id="createCircle" >-->
+
+<!--  </update>-->
+  <insert id="insertTagBatch" useGeneratedKeys="true"
+          keyProperty="id">
+    insert into Tag (title,time) values
+    <foreach item="item" collection="list" separator=",">
+      (#{item.title}, #{item.time})
+    </foreach>
+  </insert>
+
+
+</mapper>
