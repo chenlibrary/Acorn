@@ -1,6 +1,28 @@
 package com.www.acorn.tool;
 
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+@Component
 public class UserTool {
+
+    public String getUserToken(HttpServletRequest request){
+
+        String userId = (String)request.getAttribute("userId");
+
+        return userId;
+    }
+
+    //验证用户和密码是否为空
+    public boolean OldPassEqualsNewPass(String oldpass,String newpass){
+
+        boolean b = oldpass.equals(newpass);
+
+        return b;
+
+    }
 
     //验证用户和密码是否为空
     public void loginEmpty(){

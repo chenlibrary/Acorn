@@ -2,43 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.www.acorn.mapper.MyCircleMapper">
-    <resultMap id="circleAndAttentionNumDto" type="com.www.acorn.dto.CircleAndAttentionNumDto"
-               extends="com.www.acorn.mbgmapper.CircleMapper.BaseResultMap">
-        <result column="attention_num" property="attentionNum"/>
-    </resultMap>
+<mapper namespace="com.www.acorn.mapper.MyNotificationMapper">
 
-    <select id="selectRecommendCircle" resultMap="circleAndAttentionNumDto">
-        select
-        circle.*,
-        (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
-        from  circle
-        where admin_flag=1
-        order by attention_num
-    </select>
+    <update id="updateNotificationStatusRead">
+        UPDATE notification_status set status=1 where notification_id in (select notification_id from (
+        select ns.notification_id  from notification n
+        INNER JOIN notification_status ns on ns.notification_id=n.notification_id
+        where ns.status=0 and  user_id=#{userId} ) temp)
+    </update>
 
-    <select id="selectOfficialCircle" resultMap="circleAndAttentionNumDto">
-        select
-        circle.*,
-        (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
-        from  circle
-        where admin_flag=1
-    </select>
-
-    <select id="selectSearchCircle" resultMap="circleAndAttentionNumDto">
-        select
-        circle.*,
-        (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
-        from  circle
-        where admin_flag=1 and  name  LIKE  concat('%',#{searchText},'%')
-    </select>
-
-    <select id="selectAllCircle" resultMap="circleAndAttentionNumDto">
-        select
-        circle.*,
-        (select count(1)  from  circle_attention  where ciecle_id=circle.ciecle_id) as attention_num
-        from  circle
-        where admin_flag=1
-        order by  circle.date desc
-    </select>
 </mapper>

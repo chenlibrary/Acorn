@@ -1,4 +1,4 @@
-package com.chenjiahui.community.exception;
+package com.www.acorn.exception;
 
 public interface ICustomizeErrorCode {
     String getMessage();

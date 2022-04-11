@@ -21,4 +21,6 @@ public interface MyNotificationMapper {
             " order by n.time "+
             "</script>")
        List<Map> findNotification(@Param("userId")String userId, @Param("status")String status);
+
+        int updateNotificationStatusRead(@Param("userId")String userId);
 }

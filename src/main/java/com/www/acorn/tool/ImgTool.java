@@ -12,7 +12,7 @@ import java.util.UUID;
 public class ImgTool {
 
 
-    public String imgFile(MultipartFile file, String id){
+    public String imgFile(MultipartFile file){
         if (file.isEmpty()) {
             System.out.println("文件为空空");
 

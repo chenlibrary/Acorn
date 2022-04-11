@@ -1,4 +1,4 @@
-package com.chenjiahui.community.exception;
+package com.www.acorn.exception;
 
 public enum CustomizeErrorCode implements ICustomizeErrorCode{
     QUESTION_NO_FOUND(2001,"您找的问题不在了，换个问题看看"),

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.acorn.mapper.MyPaperMapper">
+
+
+  <select id="selectPaper" resultMap="java.util.HashMap">
+    select
+        p.paper_id,
+        p.title,
+        p.circle_id,
+        p.time,
+        p.user_id,
+        p.cover,
+        p.content,
+        u.user,
+        u.nickname,
+        u.icon,
+        u.admin_flag,
+        c.name,
+        (select count(1) from comment where comment.paper_id=p.paper_id ) comcomment_count,
+        (select count(1) from paper_visit where paper_visit.paper_id=p.paper_id  ) paper_view_count
+     from paper p
+                left join  user u on u.user_id=p.user_id
+                left join  circle c on c.circle_id=p.circle_id
+                left join  comment com on com.paper_id=p.paper_id
+                left join  paper_visit pv on pv.paper_id=p.paper_id
+    where p.draft_flag=0 and p.del_flag=0 and p.user_id=#{userId}
+  </select>
+
+
+
+    <select id="selectDraftPaper" resultMap="java.util.Map">
+    select
+        p.paper_id,
+        p.title,
+        p.circle_id,
+        p.time,
+        p.user_id,
+        p.cover,
+        p.content,
+        u.user,
+        u.nickname,
+        u.icon,
+        u.admin_flag,
+        c.name,
+        (select count(1) from comment where comment.paper_id=p.paper_id ) comcomment_count,
+        (select count(1) from paper_visit where paper_visit.paper_id=p.paper_id  ) paper_view_count
+     from paper p
+                left join  user u on u.user_id=p.user_id
+                left join  circle c on c.circle_id=p.circle_id
+                left join  comment com on com.paper_id=p.paper_id
+                left join  paper_visit pv on pv.paper_id=p.paper_id
+    where p.draft_flag=1 and p.del_flag=0 and p.user_id=#{userId}
+  </select>
+
+    <select id="selectCollectPaper" resultMap="java.util.Map">
+    select
+        p.paper_id,
+        p.title,
+        p.circle_id,
+        p.time,
+        p.user_id,
+        p.cover,
+        p.content,
+        u.user,
+        u.nickname,
+        u.icon,
+        u.admin_flag,
+        c.name,
+        (select count(1) from comment where comment.paper_id=p.paper_id ) comcomment_count,
+        (select count(1) from paper_visit where paper_visit.paper_id=p.paper_id  ) paper_view_count
+     from paper p
+                left join  user u on u.user_id=p.user_id
+                left join  circle c on c.circle_id=p.circle_id
+                left join  comment com on com.paper_id=p.paper_id
+                left join  paper_visit pv on pv.paper_id=p.paper_id
+    where p.draft_flag=1 and p.del_flag=0 and c.user_id=#{userId}
+  </select>
+
+    <select id="selectRecyclePaper" resultMap="java.util.Map">
+    select
+        p.paper_id,
+        p.title,
+        p.circle_id,
+        p.time,
+        p.user_id,
+        p.cover,
+        p.content,
+        u.user,
+        u.nickname,
+        u.icon,
+        u.admin_flag,
+        c.name,
+        (select count(1) from comment where comment.paper_id=p.paper_id ) comcomment_count,
+        (select count(1) from paper_visit where paper_visit.paper_id=p.paper_id  ) paper_view_count
+     from paper p
+                left join  user u on u.user_id=p.user_id
+                left join  circle c on c.circle_id=p.circle_id
+                left join  comment com on com.paper_id=p.paper_id
+                left join  paper_visit pv on pv.paper_id=p.paper_id
+    where p.draft_flag=1 and p.del_flag=1 and c.user_id=#{userId}
+  </select>
+
+
+    <select id="selectPaperDetail"  resultMap="java.util.Map">
+                select
+                    // paper 表
+                    p.paper_id,
+                    p.title,
+                    p.circle_id,
+                    p.time,
+                    p.user_id,
+                    p.cover,
+                    p.content,
+                    p.draft_flag,
+
+                    // user 表
+                    u.user_id,
+                    u.user,
+                    u.nickname,
+                    u.icon,
+                    u.admin_flag,
+
+                    // circle 表
+                    c.circle_id,
+                     c.name
+                from paper p
+                left join  user u on u.user_id=p.user_id
+                left join  circle c on c.circle_id=p.circle_id
+                where p.paper_id=#{paperId}
+    </select>
+
+
+
+</mapper>

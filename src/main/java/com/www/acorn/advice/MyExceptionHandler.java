@@ -28,16 +28,38 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
         UniversalityDto uld = new UniversalityDto();
         Map map=new HashMap<String,String>();
 
-        uld.setCode("500");
+        uld.setCode(500);
         uld.setData(map);
         uld.setMsg("请求异常");
         uld.setSucceedFlag(false);
 
-
-
         return  uld;
 
     }
+
+    /**
+     * 处理@Validated参数校验失败异常
+     * @param exception 异常类
+     * @return 响应
+     */
+//    @ResponseBody
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public Result exceptionHandler(MethodArgumentNotValidException exception){
+//        BindingResult result = exception.getBindingResult();
+//        StringBuilder stringBuilder = new StringBuilder();
+//        if (result.hasErrors()) {
+//            List<ObjectError> errors = result.getAllErrors();
+//            if (errors != null) {
+//                errors.forEach(p -> {
+//                    FieldError fieldError = (FieldError) p;
+//                    log.warn("Bad Request Parameters: dto entity [{}],field [{}],message [{}]",fieldError.getObjectName(), fieldError.getField(), fieldError.getDefaultMessage());
+//                    stringBuilder.append(fieldError.getDefaultMessage());
+//                });
+//            }
+//        }
+//        return ResultUtil.validatedException(stringBuilder.toString());
+//    }
 
 
 

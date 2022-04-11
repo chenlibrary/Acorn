@@ -1,5 +1,6 @@
 package com.www.acorn.mapper;
 
+import com.www.acorn.dto.CircleAndAttentionNumDto;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -43,5 +44,16 @@ public interface MyCircleMapper {
 
     @Select(" select tag.*  from  circle_tag left join tag  on circle_tag.tag_id=tag.tag_id where ciecle_id=#{ciecleId}")
     List<Map> findUserCircleTag(@Param("ciecleId")String ciecleId);
+
+
+    List<CircleAndAttentionNumDto> selectRecommendCircle();
+
+    List<CircleAndAttentionNumDto>  selectOfficialCircle();
+
+    List<CircleAndAttentionNumDto> selectSearchCircle(@Param("searchText")String searchText);
+
+    List<CircleAndAttentionNumDto> selectAllCircle();
+
+
 
 }

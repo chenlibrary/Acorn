@@ -1,7 +1,7 @@
 package com.www.acorn.interceptor;
 
 import com.www.acorn.exception.TokenRuntimeException;
-import com.www.acorn.mapper.UserMapper;
+import com.www.acorn.mapper.MyUserMapper;
 import com.www.acorn.tool.JwtUtils;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserMapper userMapper;
+    private MyUserMapper userMapper;
 
 
     @Override
@@ -58,11 +58,12 @@ public class TokenInterceptor implements HandlerInterceptor {
             throw new TokenRuntimeException("token已过期，请重新登录");
         }
 
-        // 5、 从 token 中获取员工信息
+        // 5、 从 token 中获取用户信息
         String subject = claim.getSubject();
 
         // 6、去数据库中匹配 id 是否存在
         List<Map> userId = userMapper.findUserId(subject);
+//        List<Map> userId =new ArrayList<>();
 
         if (userId.isEmpty()) {
             System.out.println("用户不存在");
@@ -72,6 +73,8 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         // 7、成功后 设置想设置的属性，比如员工姓名
         request.setAttribute("userId", subject);
+
+
 
         return true;
     }

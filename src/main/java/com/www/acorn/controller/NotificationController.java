@@ -29,4 +29,14 @@ public class NotificationController {
 
         return notification;
     }
+
+    @RequestMapping(value = "/updateNotificationStatus",method = RequestMethod.POST )
+    public Object updateNotificationStatus(HttpServletRequest request){
+
+        String userId= userTool.getUserToken(request);
+
+        UniversalityDto universalityDto = notificationService.updateNotificationStatus(userId);
+        return universalityDto;
+
+    }
 }

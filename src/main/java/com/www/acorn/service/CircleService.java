@@ -1,43 +1,52 @@
 package com.www.acorn.service;
 
 
+import com.www.acorn.dto.CircleDtoRequest;
+import com.www.acorn.dto.SearchCircleRequest;
 import com.www.acorn.dto.UniversalityDto;
-import com.www.acorn.mapper.CircleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
-public class CircleService {
-
-    @Autowired
-    private CircleMapper circleMapper;
-
-    public UniversalityDto attentionCircle(String userid){
-
-        List<Map> userAttentionCircleList = circleMapper.findUserAttentionCircle(userid);
-
-        //循环根据圈子表ciecle_id取出对应的标签
-        for(int i=0;i<userAttentionCircleList.size();i++){
-            Map map = userAttentionCircleList.get(i);
-            Object ciecle_id = map.get("ciecle_id");
-            if(ciecle_id!=null&&!ciecle_id.equals("")){
-                List<Map> userCircleTag = circleMapper.findUserCircleTag(ciecle_id.toString());
-                map.put("tags",userCircleTag);
-
-            }
-        }
-        Map m=new HashMap();
-        m.put("ls",userAttentionCircleList);
-
-        UniversalityDto universalityDto = new UniversalityDto("200", "", m, true);
-
-        return  universalityDto;
+public interface CircleService {
 
 
+    /**
+     *  根据用户id去获取已经关注的圈子
+     * @param userid 用户id
+     * @return
+     */
+     UniversalityDto getAttentionCircle(String userid);
 
-    }
+    /**
+     * 根据用户ID，去找关注的圈子，共同标签最多的圈子推荐
+     * @return
+     */
+     UniversalityDto getRecommendCircle();
+
+    /**
+     * 获得官方圈子
+     * @return
+     */
+    UniversalityDto getOfficialCircle();
+
+    /**
+     * 获得搜索圈子
+     * @return
+     */
+    UniversalityDto getSearchCircle(SearchCircleRequest searchCircleRequest);
+
+    /**
+     *上传临时图片
+     */
+    String upImg(MultipartFile file);
+
+    /**
+     *创建圈子
+     */
+    UniversalityDto createCircle(CircleDtoRequest createCircleRequest,String userId);
+
+
+
 }

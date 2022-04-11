@@ -15,8 +15,8 @@ public class JwtUtils {
 
     // 过期时间
     private static long expire = 604800;
-    // 秘钥
-    private static String secret = "HSyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9";
+    // 秘钥 HSyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+    private static String secret = "HSyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1CjH9";
 
     /**
      * 创建一个token

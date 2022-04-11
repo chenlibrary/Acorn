@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost/acorn"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!-- 类型转换-->
+        <javaTypeResolver >
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+<!--        生成实体类接口路径-->
+        <javaModelGenerator targetPackage="com.www.acorn.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+<!--        生成xml路径-->
+        <sqlMapGenerator targetPackage="mbgmapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--        生成mapper接口路径-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.www.acorn.mbgmapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="blogroll" domainObjectName="Blogroll" >
+        </table>
+
+        <table tableName="circle" domainObjectName="Circle" >
+        </table>
+        <table tableName="circle_attention" domainObjectName="CircleAttention" >
+        </table>
+        <table tableName="circle_tag" domainObjectName="CircleTag" >
+        </table>
+        <table tableName="collect" domainObjectName="Collect" >
+        </table>
+        <table tableName="comment" domainObjectName="Comment" >
+        </table>
+        <table tableName="comment_support" domainObjectName="CommentSupport" >
+        </table>
+        <table tableName="notice" domainObjectName="Notice" >
+        </table>
+        <table tableName="notification" domainObjectName="Notification" >
+        </table>
+        <table tableName="notification_status" domainObjectName="NotificationStatus" >
+        </table>
+        <table tableName="paper" domainObjectName="Paper" >
+        </table>
+        <table tableName="paper_support" domainObjectName="PaperSupport" >
+        </table>
+        <table tableName="paper_visit" domainObjectName="PaperVisit" >
+        </table>
+        <table tableName="tag" domainObjectName="Tag" >
+        </table>
+        <table tableName="user" domainObjectName="User" >
+        </table>
+
+    </context>
+</generatorConfiguration>
